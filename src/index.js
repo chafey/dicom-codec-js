@@ -29,8 +29,8 @@ const encode = async (imageFrame, targetTransferSyntaxUID, imageInfo, encodeOpti
 }
 
 const transcode = async (compressedImageFrame, sourceTransferSyntaxUID, imageInfo, targetTransferSyntaxUID, encodeOptions) => {
-    const decoded = await decode(compressedImageFrame, sourceTransferSyntaxUID)
-    return encode(decoded.imageFrame, targetTransferSyntaxUID, decoded.imageInfo, decoded.encodeOptions)
+    const decoded = await decode(compressedImageFrame, sourceTransferSyntaxUID, imageInfo)
+    return encode(decoded.imageFrame, targetTransferSyntaxUID, decoded.imageInfo, encodeOptions)
 }
 
 const dicomCodec = {

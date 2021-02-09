@@ -41,6 +41,14 @@ const decode = async (compressedImageFrame, imageInfo) => {
     const imageFrame = new Uint8Array(decodedPixelsInWASM.length)
     imageFrame.set(decodedPixelsInWASM)
 
+    const encodedImageInfo = {
+        columns: frameInfo.width,
+        rows: frameInfo.height,
+        bitsPerPixel: frameInfo.bitsPerSample,
+        signed: imageInfo.signed,
+        componentsPerPixel: frameInfo.componentCount
+    }
+
     // delete the instance.  Note that this frees up memory including the
     // encodedBufferInWASM and decodedPixelsInWASM invalidating them. 
     // Do not use either after calling delete!
@@ -49,12 +57,12 @@ const decode = async (compressedImageFrame, imageInfo) => {
     const encodeOptions = {
         nearLossless,
         interleaveMode,
-        frameInfo
+        frameInfo : frameInfo
     }
 
     return {
         imageFrame,
-        imageInfo,
+        imageInfo : encodedImageInfo,
         encodeOptions
     }
 }
