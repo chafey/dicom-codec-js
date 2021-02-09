@@ -1,3 +1,19 @@
-const dicomExport = {}
+const decode = (compressedImageFrame, sourceTransferSyntaxUID) => {
+    
+}
 
-module.exports = dicomExport
+const encode = (imageFrame, targetTransferSyntaxUID) => {
+    
+}
+
+const transcode = (compressedImageFrame, sourceTransferSyntaxUID, targetTransferSyntaxUID) => {
+
+}
+
+const dicomCodec = {
+    decode,
+    encode,
+    transcode
+}
+
+module.exports = dicomCodec
