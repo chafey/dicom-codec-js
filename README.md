@@ -78,6 +78,7 @@ TransferSyntaxUIDs:
 - 1.2.840.10008.1.2.4.90 JPEG 2000 Image Compression (Lossless Only)
 - 1.2.840.10008.1.2.4.91 JPEG 2000 Image Compression
 
+Encode Options:
 - Object
   - decompositions - Number (default is 5)
   - lossless - Boolean (default is true)
@@ -97,6 +98,7 @@ TransferSyntaxUIDs:
 - 1.2.840.10008.1.2.4.80 JPEG-LS Lossless Image Compression
 - 1.2.840.10008.1.2.4.81 JPEG-LS Lossy (Near-Lossless) Image Compression
 
+Encode Options:
 - Object
   - interleaveMode - Number - one of the following
     - 0 - None (RRRRGGGGBBBB)
@@ -109,6 +111,7 @@ TransferSyntaxUIDs:
 TransferSyntaxUIDs:
 - "HTJ2K"
 
+Encode Options:
 - Object
   - decompositions - Number (default is 5)
   - lossless - Boolean (default is true)
