@@ -1,6 +1,5 @@
-const decode = (compressedImageFrame) => {
+const decode = (compressedImageFrame, imageInfo) => {
     const imageFrame = new Uint8Array(0)
-    const imageInfo = {}
     const encodeOptions = {}
 
     return {

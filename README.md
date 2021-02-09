@@ -16,6 +16,12 @@ git submodule init
 Parameters:
 - compressedImageFrame - Uint8Array with the compressed image frame bytes
 - sourceTransferSyntaxUID - String with the transfer syntax uid of the compressed image frame
+- imageInfo - Object
+    - rows - Number with the image rows/height
+    - columns - Number with the image columns/width
+    - bitsPerPixel - Number with bits per pixel
+    - componentsPerPixel - Number with number of components per pixel. 
+    - signed - Boolean true if pixel data is signed, false if unsigned
 
 Returns:
 - Object

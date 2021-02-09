@@ -18,9 +18,9 @@ const getCodec = (transferSyntaxUID) => {
     return codec
 }
 
-const decode = (compressedImageFrame, sourceTransferSyntaxUID) => {
+const decode = (compressedImageFrame, sourceTransferSyntaxUID, imageInfo) => {
     const codec = getCodec(sourceTransferSyntaxUID)
-    return codec.decode(compressedImageFrame)
+    return codec.decode(compressedImageFrame, imageInfo)
 }
 
 const encode = (imageFrame, targetTransferSyntaxUID, imageInfo, encodeOptions) => {
