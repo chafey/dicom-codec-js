@@ -51,5 +51,26 @@ describe('index', async () => {
         assert.strictEqual(result.encodeOptions.frameInfo.componentCount, 1)
     })
 
+    it('htj2k encode', async () => {
+        // Arrange
+        const uncompressedImageFrame = fs.readFileSync('extern/openjphjs/test/fixtures/raw/CT2.RAW')
+        const compressedImageFrame = fs.readFileSync('extern/openjphjs/test/fixtures/j2c/CT2.j2c')
+        const imageInfo = {
+            columns: 512,
+            rows: 512,
+            bitsPerPixel: 16,
+            signed: true, 
+            componentsPerPixel: 1
+        }
+        const encodeOptions = {}
+
+        // Act
+        const result = await dicomCodec.encode(uncompressedImageFrame, 'htj2k', imageInfo, encodeOptions)
+
+        // Assert
+        assert.strictEqual(result.encodedImageFrame.length, 128717)
+        assert.notStrictEqual(result.imageFrame, compressedImageFrame)
+    })
+
 
 })

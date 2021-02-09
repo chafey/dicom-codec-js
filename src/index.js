@@ -24,7 +24,7 @@ const decode = async (compressedImageFrame, sourceTransferSyntaxUID, imageInfo) 
 }
 
 const encode = async (imageFrame, targetTransferSyntaxUID, imageInfo, encodeOptions) => {
-    const codec = getCodec(sourceTransferSyntaxUID)
+    const codec = getCodec(targetTransferSyntaxUID)
     return codec.encode(imageFrame, imageInfo, encodeOptions)
 }
 

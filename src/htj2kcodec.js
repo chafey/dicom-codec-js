@@ -27,8 +27,31 @@ const decode = async (compressedImageFrame, imageInfo) => {
     }
 }
 
-const encode = async (imageFrame, imageInfo, encodeOptions) => {
-    const encodedImageFrame = new Uint8Array(0)
+const encode = async (uncompressedImageFrame, imageInfo, encodeOptions) => {
+    await openjphInitialized
+
+    const htj2kImageInfo = {
+        width: imageInfo.columns,
+        height: imageInfo.rows,
+        bitsPerSample: imageInfo.bitsPerPixel,
+        isSigned: imageInfo.signed, 
+        componentCount: imageInfo.componentsPerPixel
+    }
+
+    const encoder = new openjph.HTJ2KEncoder();
+    const decodedBytes = encoder.getDecodedBuffer(htj2kImageInfo);
+    decodedBytes.set(uncompressedImageFrame);
+    //encoder.setQuality(false, 0.001);
+  
+    encoder.encode();
+    
+    // print out information about the encode
+    const encodedBytes = encoder.getEncodedBuffer();
+    const encodedImageFrame = new Uint8Array(encodedBytes.length)
+    encodedImageFrame.set(encodedBytes)
+
+    // cleanup allocated memory
+    encoder.delete();
 
     return {
         encodedImageFrame,
