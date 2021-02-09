@@ -10,7 +10,6 @@ const openjphInitialized = new Promise((resolve, reject) => {
 
 openjph.onRuntimeInitialized = async _ => {
     // Now you can use it
-    console.log('openjph initialized')
     resolveIt()
 }
 

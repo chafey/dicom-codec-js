@@ -10,7 +10,6 @@ const openjpegInitialized = new Promise((resolve, reject) => {
 
 openjpeg.onRuntimeInitialized = async _ => {
     // Now you can use it
-    console.log('openjpeg initialized')
     resolveIt()
 }
 

@@ -11,7 +11,7 @@ const codecs = {
 }
 
 const getCodec = (transferSyntaxUID) => {
-    const codec = codecs[sourceTransferSyntaxUID]
+    const codec = codecs[transferSyntaxUID]
     if(!codec) {
         throw new Error('unknown transfer syntax UID ' + transferSyntaxUID)
     }
