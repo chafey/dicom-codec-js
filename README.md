@@ -42,7 +42,15 @@ Parameters:
 - encodeOptions - Object - contents specific to each codec (see below)
 
 Returns:
-- Uint8Array with the compressed image frame bytes
+- Object
+   - encodedImageFrame - Uint8Array with the encoded image frame bytes
+   - imageInfo - Object
+        - rows - Number with the image rows/height
+        - columns - Number with the image columns/width
+        - bitsPerPixel - Number with bits per pixel
+        - componentsPerPixel - Number with number of components per pixel. 
+        - signed - true if pixel data is signed, false if unsigned
+    - encodeOptions - Object - contents specific to each codec
 
 ## transcode
 
@@ -60,7 +68,7 @@ Parameters:
 
 Returns:
 - Object
-    - imageFrame - Uint8Array with the uncompressed image frame bytes
+    - encodedImageFrame - Uint8Array with the encoded image frame bytes
     - imageInfo - Object
         - rows - Number with the image rows/height
         - columns - Number with the image columns/width
