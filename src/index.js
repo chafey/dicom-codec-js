@@ -1,35 +1,36 @@
-const decode = (compressedImageFrame, sourceTransferSyntaxUID) => {
+const jpeglscodec = require('./jpeglscodec')
+const jpeg2000codec = require('./jpeg2000codec')
+const htj2kcodec = require('./htj2kcodec')
 
-    const imageFrame = new Uint8Array(0)
-    const imageInfo = {}
-    const encodeOptions = {}
+const codecs = {
+    '1.2.840.10008.1.2.4.80' : jpeglscodec,
+    '1.2.840.10008.1.2.4.81' : jpeglscodec,
+    '1.2.840.10008.1.2.4.90' : jpeg2000codec,
+    '1.2.840.10008.1.2.4.91' : jpeg2000codec,
+    'htj2k' : htj2kcodec,
+}
 
-    return {
-        imageFrame,
-        imageInfo,
-        encodeOptions
+const getCodec = (transferSyntaxUID) => {
+    const codec = codecs[sourceTransferSyntaxUID]
+    if(!codec) {
+        throw new Error('unknown transfer syntax UID ' + transferSyntaxUID)
     }
+    return codec
+}
+
+const decode = (compressedImageFrame, sourceTransferSyntaxUID) => {
+    const codec = getCodec(sourceTransferSyntaxUID)
+    return codec.decode(compressedImageFrame)
 }
 
 const encode = (imageFrame, targetTransferSyntaxUID, imageInfo, encodeOptions) => {
-    const encodedImageFrame = new Uint8Array(0)
-
-    return {
-        encodedImageFrame,
-        imageInfo,
-        encodeOptions
-    }
+    const codec = getCodec(sourceTransferSyntaxUID)
+    return codec.encode(imageFrame, imageInfo, encodeOptions)
 }
 
 const transcode = (compressedImageFrame, sourceTransferSyntaxUID, imageInfo, targetTransferSyntaxUID, encodeOptions) => {
-
-    const encodedImageFrame = new Uint8Array(0)
-
-    return {
-        encodedImageFrame,
-        imageInfo,
-        encodeOptions
-    }
+    const decoded = decode(compressedImageFrame, sourceTransferSyntaxUID)
+    return encode(decoded.imageFrame, targetTransferSyntaxUID, decoded.imageInfo, decoded.encodeOptions)
 }
 
 const dicomCodec = {
