@@ -1,0 +1,9 @@
+[submodule "extern/charls-js"]
+	path = extern/charls-js
+	url = https://github.com/chafey/charls-js.git
+[submodule "openjphjs"]
+	path = extern/openjphjs
+	url = https://github.com/chafey/openjphjs.git
+[submodule "extern/openjpegjs"]
+	path = extern/openjpegjs
+	url = https://github.com/chafey/openjpegjs.git

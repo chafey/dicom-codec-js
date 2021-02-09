@@ -1,0 +1,26 @@
+{
+  "name": "dicom-codec-js",
+  "version": "1.0.0",
+  "description": "DICOM Codecs for JavaScript",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha --recursive --trace-warnings --unhandled-rejections=strict"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chafey/dicom-codec-js.git"
+  },
+  "keywords": [
+    "DICOM",
+    "Codec"
+  ],
+  "author": "Chris Hafey <chafey@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chafey/dicom-codec-js/issues"
+  },
+  "homepage": "https://github.com/chafey/dicom-codec-js#readme",
+  "devDependencies": {
+    "mocha": "^8.2.1"
+  }
+}
