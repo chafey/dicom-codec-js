@@ -15,7 +15,7 @@ git submodule init
 
 Parameters:
 - compressedImageFrame - Uint8Array with the compressed image frame bytes
-- sourceTransferSyntaxUID - string with the transfer syntax uid of the compressed image frame
+- sourceTransferSyntaxUID - String with the transfer syntax uid of the compressed image frame
 
 Returns:
 - Object
@@ -25,21 +25,21 @@ Returns:
         - columns - Number with the image columns/width
         - bitsPerPixel - Number with bits per pixel
         - componentsPerPixel - Number with number of components per pixel. 
-        - signed - true if pixel data is signed, false if unsigned
-    - encodeOptions - Object - contents specific to each codec
+        - signed - Boolean true if pixel data is signed, false if unsigned
+    - encodeOptions - Object with contents specific to each codec (see below)
 
 ## encode
 
 Parameters:
 - imageFrame - Uint8Array with the uncompressed image frame bytes
-- targetTransferSyntaxUID - string with the transfer syntax uid to encode the image frame as
+- targetTransferSyntaxUID - String with the transfer syntax uid to encode the image frame as
 - imageInfo - Object
     - rows - Number with the image rows/height
     - columns - Number with the image columns/width
     - bitsPerPixel - Number with bits per pixel
     - componentsPerPixel - Number with number of components per pixel. 
-    - signed - true if pixel data is signed, false if unsigned
-- encodeOptions - Object - contents specific to each codec
+    - signed - Boolean true if pixel data is signed, false if unsigned
+- encodeOptions - Object - contents specific to each codec (see below)
 
 Returns:
 - Uint8Array with the compressed image frame bytes
@@ -48,15 +48,15 @@ Returns:
 
 Parameters:
 - compressedImageFrame - Uint8Array with the compressed image frame bytes
-- sourceTransferSyntaxUID - string with the transfer syntax uid of the compressed image frame
+- sourceTransferSyntaxUID - String with the transfer syntax uid of the compressed image frame
 - imageInfo - Object
     - rows - Number with the image rows/height
     - columns - Number with the image columns/width
     - bitsPerPixel - Number with bits per pixel
     - componentsPerPixel - Number with number of components per pixel. 
-    - signed - true if pixel data is signed, false if unsigned
-- targetTransferSyntaxUID - string with the transfer syntax uid to encode the image frame as
-- encodeOptions - Object - contents specific to each codec
+    - signed - Boolean true if pixel data is signed, false if unsigned
+- targetTransferSyntaxUID - String with the transfer syntax uid to encode the image frame as
+- encodeOptions - Object - contents specific to each codec (see below)
 
 Returns:
 - Object
@@ -90,7 +90,7 @@ Encode Options:
     - 4 CPRL
   - blockDimensions - Number - default is 64 (64x64)
   - encodeLayerCount - Number - default is 1
-  - layerCompressionRatios - Array of encodeLayerCount Numbers
+  - layerCompressionRatios - Array of Numbers with length === encodeLayerCount
 
 ### JPEG-LS
 
