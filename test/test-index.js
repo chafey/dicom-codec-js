@@ -32,7 +32,8 @@ describe('index', async () => {
 
     it('jpegls decode', async () => {
         // Arrange
-        const compressedImageFrame = fs.readFileSync('extern/charls-js/test/fixtures/CT1.JLS')
+        const uncompressedImageFrame = fs.readFileSync('extern/charls-js/test/fixtures/CT2.RAW')
+        const compressedImageFrame = fs.readFileSync('extern/charls-js/test/fixtures/CT2.JLS')
         const imageInfo = {}
 
         // Act
@@ -41,6 +42,7 @@ describe('index', async () => {
 
         // Assert
         assert.strictEqual(result.imageFrame.length, 524288)
+        assert.notStrictEqual(result.imageFrame, uncompressedImageFrame)
         assert.strictEqual(result.encodeOptions.nearLossless, 0)
         assert.strictEqual(result.encodeOptions.interleaveMode, 0)
         assert.strictEqual(result.encodeOptions.frameInfo.width, 512)
