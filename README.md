@@ -13,6 +13,8 @@ git submodule init
 
 ## decode
 
+async function that decodes an image
+
 Parameters:
 - compressedImageFrame - Uint8Array with the compressed image frame bytes
 - sourceTransferSyntaxUID - String with the transfer syntax uid of the compressed image frame
@@ -35,6 +37,8 @@ Returns:
     - encodeOptions - Object with contents specific to each codec (see below)
 
 ## encode
+
+async function that encodes an image
 
 Parameters:
 - imageFrame - Uint8Array with the uncompressed image frame bytes
@@ -59,6 +63,8 @@ Returns:
     - encodeOptions - Object - contents specific to each codec
 
 ## transcode
+
+async function that transcodes an image (decodes and then encodes)
 
 Parameters:
 - compressedImageFrame - Uint8Array with the compressed image frame bytes

@@ -18,18 +18,18 @@ const getCodec = (transferSyntaxUID) => {
     return codec
 }
 
-const decode = (compressedImageFrame, sourceTransferSyntaxUID, imageInfo) => {
+const decode = async (compressedImageFrame, sourceTransferSyntaxUID, imageInfo) => {
     const codec = getCodec(sourceTransferSyntaxUID)
     return codec.decode(compressedImageFrame, imageInfo)
 }
 
-const encode = (imageFrame, targetTransferSyntaxUID, imageInfo, encodeOptions) => {
+const encode = async (imageFrame, targetTransferSyntaxUID, imageInfo, encodeOptions) => {
     const codec = getCodec(sourceTransferSyntaxUID)
     return codec.encode(imageFrame, imageInfo, encodeOptions)
 }
 
-const transcode = (compressedImageFrame, sourceTransferSyntaxUID, imageInfo, targetTransferSyntaxUID, encodeOptions) => {
-    const decoded = decode(compressedImageFrame, sourceTransferSyntaxUID)
+const transcode = async (compressedImageFrame, sourceTransferSyntaxUID, imageInfo, targetTransferSyntaxUID, encodeOptions) => {
+    const decoded = await decode(compressedImageFrame, sourceTransferSyntaxUID)
     return encode(decoded.imageFrame, targetTransferSyntaxUID, decoded.imageInfo, decoded.encodeOptions)
 }
 
