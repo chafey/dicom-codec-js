@@ -1,6 +1,21 @@
 # dicom-codec-js
 DICOM Codecs for JavaScript
 
+# Features
+
+Currently Implemented:
+- JPEG-LS decoding
+- HTJ2K encoding
+
+Short Term:
+- JPEG-LS encoding
+- HTJ2K decoding
+- JPEG2000 encoding
+- JPEG2000 decoding
+
+Longer Term:
+- the rest of the DICOM transfer syntaxes (JPEG baseline, rle, etc)
+
 # Building
 
 This project uses git submodules for external dependencies.  You must do the following first:
