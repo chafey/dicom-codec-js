@@ -1,21 +1,23 @@
 const assert = require('assert')
 const dicomCodec = require('../src/index')
 const fs = require('fs')
-const path = require('path')
-//const ion = require("ion-js");
-const util = require('util')
-/*
-const loadIon = (path) => {
-    const data = fs.readFileSync(path)
-    return ion.load(data)
-}
+const dicomParser = require('dicom-parser');
+const getUncompressedImageFrame = require('./getUncompressedImageFrame')
+const getEncapsulatedImageFrame = require('./getEncapsulatedImageFrame')
 
-function sleep(ms) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  }   
-*/
+const readPixelData = (path, frameIndex = 0) => {
+    const dicomBytes = fs.readFileSync(path)
+    const dataSet = dicomParser.parseDicom(dicomBytes)
+    const pixelDataElement = dataSet.elements.x7fe00010
+    if (!pixelDataElement) {
+        return null;
+    }
+    if (pixelDataElement.encapsulatedPixelData) {
+        return getEncapsulatedImageFrame(dataSet, frameIndex);
+    }
+    return getUncompressedImageFrame(dataSet, frameIndex);
+ }
+
 describe('index', async () => {
 
     before(async() => {
@@ -32,8 +34,8 @@ describe('index', async () => {
 
     it('jpegls decode', async () => {
         // Arrange
-        const uncompressedImageFrame = new Uint8Array(fs.readFileSync('extern/charls-js/test/fixtures/CT2.RAW').buffer)
-        const compressedImageFrame = new Uint8Array(fs.readFileSync('extern/charls-js/test/fixtures/CT2.JLS').buffer)
+        const uncompressedImageFrame = readPixelData('extern/dagcom-test-data/dicom/WG04/compsamples_refanddir/IMAGES/REF/CT2_UNC')
+        const compressedImageFrame = readPixelData('extern/dagcom-test-data/dicom/WG04/compsamples_jpegls/IMAGES/JLSL/CT2_JLSL')
         const imageInfo = {
             columns: 512,
             rows: 512,
@@ -63,7 +65,7 @@ describe('index', async () => {
 
     it('htj2k encode', async () => {
         // Arrange
-        const uncompressedImageFrame = fs.readFileSync('extern/openjphjs/test/fixtures/raw/CT2.RAW')
+        const uncompressedImageFrame = readPixelData('extern/dagcom-test-data/dicom/WG04/compsamples_refanddir/IMAGES/REF/CT2_UNC')
         const compressedImageFrame = new Uint8Array(fs.readFileSync('extern/openjphjs/test/fixtures/j2c/CT2.j2c').buffer)
         const imageInfo = {
             columns: 512,
@@ -90,7 +92,7 @@ describe('index', async () => {
 
     it('jpeg-ls->htj2k transcode', async () => {
         // Arrange
-        const jpegLSCompressedImageFrame = new Uint8Array(fs.readFileSync('extern/charls-js/test/fixtures/CT2.JLS').buffer)
+        const jpegLSCompressedImageFrame = readPixelData('extern/dagcom-test-data/dicom/WG04/compsamples_jpegls/IMAGES/JLSL/CT2_JLSL')
         const htj2kCompressedImageFrame = new Uint8Array(fs.readFileSync('extern/openjphjs/test/fixtures/j2c/CT2.j2c').buffer)
         const imageInfo = {
             columns: 512,

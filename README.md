@@ -21,7 +21,7 @@ Longer Term:
 This project uses git submodules for external dependencies.  You must do the following first:
 
 ```
-git submodule init
+git submodule update --init --recursive
 ```
 
 # API

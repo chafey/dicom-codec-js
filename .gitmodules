@@ -7,3 +7,6 @@
 [submodule "extern/openjpegjs"]
 	path = extern/openjpegjs
 	url = https://github.com/chafey/openjpegjs.git
+[submodule "extern/dagcom-test-data"]
+	path = extern/dagcom-test-data
+	url = https://github.com/chafey/dagcom-test-data.git

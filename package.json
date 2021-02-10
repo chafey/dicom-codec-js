@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/chafey/dicom-codec-js#readme",
   "devDependencies": {
+    "dicom-parser": "^1.8.7",
     "mocha": "^8.2.1"
   }
 }
